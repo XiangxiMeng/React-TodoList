@@ -3,26 +3,27 @@ import React from 'react';
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
   componentDidMount(){
     this.refs.itemInput.focus();
   }
-  onSubmit(e) {
+  onClick(e) {
     e.preventDefault();
     var newItemValue = this.refs.itemInput.value;
-    if(newItemValue) {
+    if(newItemValue){
       this.props.addItem({newItemValue});
       this.refs.form.reset()
     }
+    // console.log(newItemValue);
   }
   render(){
     return (
       <div>
         <h1>Todo List</h1>
-        <form ref="form" onSubmit={this.onSubmit}>
+        <form ref="form">
           <input ref="itemInput" type="text" placeholder="Enter your task here..."></input>
-          <button type="submit">Add</button>
+          <button type="submit" onClick={this.onClick}>Add</button>
         </form>   
       </div> 
     ); 
